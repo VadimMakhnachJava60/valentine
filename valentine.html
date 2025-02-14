@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6e6;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #d63384;
+            font-size: 2.2em;
+        }
+        .heart {
+            font-size: 3em;
+            animation: heartbeat 1s infinite;
+            color: red;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .falling-heart {
+            position: fixed;
+            top: -50px;
+            font-size: 2em;
+            color: red;
+            opacity: 0.7;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        .btn-container {
+            position: relative;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .yes-btn, .no-btn {
+            font-size: 18px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .yes-btn {
+            background-color: #ff4d4d;
+            color: white;
+            display: none;
+        }
+        .no-btn {
+            background-color: #aaa;
+            color: black;
+        }
+        .message {
+            font-size: 1.2em;
+            color: #ff4d4d;
+            margin-top: 20px;
+            display: none;
+        }
+        .image-container {
+            margin-top: 20px;
+            max-width: 90%;
+        }
+        .image-container img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            .heart {
+                font-size: 2.5em;
+            }
+            .yes-btn, .no-btn {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Valentine? 💖</h1>
+    <div class="heart">💘</div>
+    <p>Roses are red, violets are blue,<br> My heart skips a beat just thinking of you! 💕</p>
+    <div class="btn-container">
+        <button class="yes-btn" id="yesBtn">Yes! 💘</button>
+        <button class="no-btn" id="noBtn">No 😢</button>
+    </div>
+    <p class="message" id="message">Yay! You've just made my heart explode with happiness! 🎉💖</p>
+    <div class="image-container">
+        <img src="/png/photo_2025-02-13_11-16-35.jpg" alt="Meme Image"> <!-- Замените ссылку -->
+    </div>
+    <script>
+        const noBtn = document.getElementById("noBtn");
+        const yesBtn = document.getElementById("yesBtn");
+        const message = document.getElementById("message");
+
+        noBtn.addEventListener("mouseover", () => {
+            noBtn.style.display = "none";
+            yesBtn.style.display = "inline-block";
+        });
+
+        yesBtn.addEventListener("click", () => {
+            message.style.display = "block";
+        });
+
+        function createFallingHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("falling-heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createFallingHeart, 500);
+    </script>
+</body>
+</html>
